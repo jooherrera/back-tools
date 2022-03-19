@@ -1,0 +1,15 @@
+{
+  "name": "@jooherrera/back-tools",
+  "version": "0.0.1",
+  "description": "",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "author": "Jose Herrera",
+  "license": "ISC",
+  "files": [
+    "lib/**/*"
+  ],
+  "dependencies": {
+    "yargs": "^17.3.1"
+  }
+}
