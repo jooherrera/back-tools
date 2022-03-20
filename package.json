@@ -12,14 +12,22 @@
   "scripts": {
     "build": "tsc && npm run copy-assets ",
     "clean": "rm -rf lib",
-    "copy-assets": "node copyAssets.js"
+    "copy-assets": "node copyAssets.js",
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register  'tests/**/*.ts'  "
   },
   "devDependencies": {
+    "@types/chai": "^4.3.0",
+    "@types/mocha": "^9.1.0",
+    "@types/node-emoji": "^1.8.1",
     "@types/shelljs": "^0.8.11",
     "@types/yargs": "^17.0.10",
+    "chai": "^4.3.6",
+    "mocha": "^9.2.2",
+    "ts-node": "^10.7.0",
     "typescript": "^4.6.2"
   },
   "dependencies": {
+    "node-emoji": "^1.11.0",
     "shelljs": "^0.8.5",
     "yargs": "^17.3.1"
   }
