@@ -11,7 +11,7 @@ export const getEnvFile = (fileName?: string): string => {
   return argv.NODE_ENV && fileName ? `.env.${fileName}` : `.env`
 }
 
-export const checkEmptyEnvVariable = (envVariables: {}): boolean => {
+export const isEmptyEnvVariable = (envVariables: {}): boolean => {
   let isEmpty = false
   Object.entries(envVariables).map((env) => {
     if (typeof env[1] === 'undefined') {
