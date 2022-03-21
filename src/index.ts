@@ -31,11 +31,14 @@ export const isEmptyEnvVariable = (envVariables: {}): boolean => {
 
 export const Logg = (message: string): ILogg => ({
   log: () => {
-    if (process.env.ENVIRONMENT !== 'production') {
-      LoggerDev.msg.info(message)
-    }
+    LoggerDev.msg.info(message)
   },
   file: () => {
     LoggerProd.msg.error(message)
+  },
+  debug: () => {
+    if (process.env.ENVIRONMENT !== 'production') {
+      LoggerDev.msg.debug(message)
+    }
   },
 })

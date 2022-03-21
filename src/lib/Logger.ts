@@ -48,6 +48,7 @@ const LoggerDev = {
 export interface ILogg {
   log: () => void
   file: () => void
+  debug: () => void
 }
 
 export { LoggerDev, LoggerProd }
