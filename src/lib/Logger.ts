@@ -10,9 +10,15 @@ const myFormatFile = winston.format.combine(
   winston.format.timestamp({ format: 'DD-MM-YYYY -- HH:mm:ss' }),
   winston.format.printf((error) => `${error.label} - {${error.timestamp}} | El error surge en: --> ${error.message}`)
 )
-const formatDev = winston.format.combine(
-  winston.format.label({ label: '[Debug]' }),
+const formatInfo = winston.format.combine(
+  winston.format.label({ label: '[Info]' }),
   winston.format.printf((info) => `${info.label} -> ${info.message}`),
+  winston.format.colorize({ all: true })
+)
+
+const formatWarn = winston.format.combine(
+  winston.format.label({ label: '[Debug]' }),
+  winston.format.printf((warn) => `${warn.label} -> ${warn.message}`),
   winston.format.colorize({ all: true })
 )
 
@@ -33,11 +39,23 @@ const LoggerProd = {
   }),
 }
 
-const LoggerDev = {
+const LoggerInfo = {
   msg: winston.createLogger({
     transports: [
       new winston.transports.Console({
-        format: formatDev,
+        format: formatInfo,
+      }),
+    ],
+
+    exitOnError: false,
+  }),
+}
+
+const LoggerDebug = {
+  msg: winston.createLogger({
+    transports: [
+      new winston.transports.Console({
+        format: formatWarn,
       }),
     ],
 
@@ -51,4 +69,4 @@ export interface ILogg {
   debug: () => void
 }
 
-export { LoggerDev, LoggerProd }
+export { LoggerInfo, LoggerProd, LoggerDebug }

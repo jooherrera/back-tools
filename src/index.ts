@@ -3,7 +3,7 @@ import yargs from 'yargs/yargs'
 import dotenv from 'dotenv'
 import path from 'path'
 
-import { LoggerProd, LoggerDev, ILogg } from './lib/Logger'
+import { LoggerProd, LoggerInfo, LoggerDebug, ILogg } from './lib/Logger'
 
 export const initializeEnvironment = (): void => {
   const argv = yargs(process.argv.slice(2))
@@ -31,14 +31,14 @@ export const isEmptyEnvVariable = (envVariables: {}): boolean => {
 
 export const Logg = (message: string): ILogg => ({
   log: () => {
-    LoggerDev.msg.info(message)
+    LoggerInfo.msg.info(message)
   },
   file: () => {
     LoggerProd.msg.error(message)
   },
   debug: () => {
     if (process.env.ENVIRONMENT !== 'production') {
-      LoggerDev.msg.debug(message)
+      LoggerDebug.msg.warn(message)
     }
   },
 })
