@@ -1,2 +1,10 @@
-getEnvFile: (fileName?: string | undefined) => string;
-checkEmptyEnvVariable: (envVariables: {}) => boolean;
+# initializeEnvironment: () => void;
+
+# isEmptyEnvVariable: (envVariables: {}) => boolean;
+
+# Logg: (message: string) => ILogg;
+
+interface ILogg {
+log: () => void;
+file: () => void;
+}
