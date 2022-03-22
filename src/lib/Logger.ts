@@ -1,7 +1,7 @@
-import winston, { Logger } from 'winston'
+import winston from 'winston'
 
 const myFormatConsole = winston.format.combine(
-  winston.format.label({ label: '[Production]' }),
+  winston.format.label({ label: '[Error]' }),
   winston.format.printf((info) => `${info.label} - El error surge en: --> ${info.message}`),
   winston.format.colorize({ all: true })
 )
@@ -28,14 +28,13 @@ const LoggerProd = {
       new winston.transports.Console({
         format: myFormatConsole,
       }),
+
       new winston.transports.File({
         format: myFormatFile,
         filename: './logs/error.log',
         level: 'error',
       }),
     ],
-
-    exitOnError: false,
   }),
 }
 
@@ -46,8 +45,6 @@ const LoggerInfo = {
         format: formatInfo,
       }),
     ],
-
-    exitOnError: false,
   }),
 }
 
@@ -58,8 +55,6 @@ const LoggerDebug = {
         format: formatWarn,
       }),
     ],
-
-    exitOnError: false,
   }),
 }
 
