@@ -1,8 +1,7 @@
 import emoji from 'node-emoji'
 import yargs from 'yargs/yargs'
 import dotenv from 'dotenv'
-import path, { format } from 'path'
-import Mongo from './lib/MongoDB'
+import path from 'path'
 
 import { LoggerProd, LoggerInfo, LoggerDebug, ILogg } from './lib/Logger'
 
@@ -43,14 +42,3 @@ export const Logg = (message: string): ILogg => ({
     }
   },
 })
-
-export const connectToDB = async (URI: string): Promise<boolean> => {
-  try {
-    const db = new Mongo(URI)
-    await db.connect()
-    return true
-  } catch (error: any) {
-    Logg(` MONGO- CONNECTION - ${error.message}`).file()
-    return false
-  }
-}
